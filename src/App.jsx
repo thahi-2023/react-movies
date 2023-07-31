@@ -1,38 +1,38 @@
+
 import Form from "./components/Form"
 import MovieDisplay from "./components/MovieDisplay"
-import {useState, useEffect} from 'react'
-import styled from 'styled-components'
-
-
+import { useState } from "react"
+import { useEffect } from "react"
 
 function App() {
-  const apiKey ='edc05d37'
-  const [movie, setMovie] = useState(null)
 
-  const getMovie =async (searchTerm) => {
+  const apiKey = "44011384";
+
+  const [movie,setMovie] = useState(null)
+
+  const getMovie = async (searchTerm) =>{
     try {
-  const response = await fetch (`http://www.omdbapi.com/?apikey=$(apiKey&t=$(searchTerm)`)
-  const data = await response.json();
-  setMovie(data)
+      const response = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${searchTerm}`)
+      const movie = await response.json();
+      // console.log(data)
+      setMovie(movie)
 
-    }catch (error) {
+
+    } catch (error) {
       console.log(error)
-
     }
+
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     getMovie('shrek')
-  },[])
+  }, [])
 
   return (
-    <>
-   <Form movieSearch= {getMovie}/>
-   
-   <MovieDisplay movie={movie}/>   
-     
-     
-    </>
+    <div>
+    <Form movieSearch={getMovie}/>
+    <MovieDisplay movie={movie} />
+    </div>
   )
 }
 
