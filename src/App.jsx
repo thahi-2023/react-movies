@@ -4,6 +4,8 @@ import MovieDisplay from "./components/MovieDisplay"
 import { useState } from "react"
 import { useEffect } from "react"
 
+
+
 function App() {
 
   const apiKey = "44011384";
